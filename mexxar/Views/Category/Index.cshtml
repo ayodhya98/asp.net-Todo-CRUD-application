@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+           
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+        td{
+            color:black
+        }
+
+        th {
+            color: black
+        }
+        edit{
+            color: black
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Todo List</h1>
+
+        <div class="container p-3">
+            <div class="row pt-4">
+                <div class="col-6">
+                </div>
+            </div>
+            <div>
+                <a asp-controller="Category" asp-action="Create" class="btn btn-outline-light">
+                    <i class="bi bi-plus-circle"></i> &nbsp;
+                    Create New Task
+                </a>
+            </div>
+          
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>User's Name</th>
+                    <th>Task</th>
+                    <th>Created Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td>@obj.Name</td>
+                        <td>@obj.Description</td>
+                        <td>@obj.CreateDateTime</td>
+                        <td>
+                            <div class="W-75 btn-group"  role="group">
+                                <a class="btn btn-danger" asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pencil-square"></i>&nbsp;Edit</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="W-75 btn-group" role="group">
+                                <a class="btn btn-warning" asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id">&nbsp;Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
+
